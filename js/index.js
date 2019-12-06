@@ -1,3 +1,5 @@
+import { gsap } from "gsap";
+
 // /////////////// grab elements ////////////////////
 ////////////////////////////////////////////////////
 
@@ -12,6 +14,8 @@ const button1= document.querySelector('.content-pick .btn:first-child');
 const button2= document.querySelector('.content-pick .btn:nth-child(2)');
 const button3= document.querySelector('.content-pick .btn:last-child');
 
+// nav
+const nav= document.querySelector('nav');
 
 //nav links
 const navLink1= document.querySelector('nav .nav-link:first-child');
@@ -103,6 +107,19 @@ mainHeader.addEventListener('transitionend', (event) => {
     console.log('header transitions have ended');
 });//end transitionend
 
+// ////////////////// create and handle propagation ////////////////
+///////////////////////////////////////////////////////////////////
+//nav link click event
+navLink4.addEventListener('click', (event) => {
+    navLink4.style.color= "pink"; // triggers the 'nav' click event as well
+    event.stopPropagation();
+});//end click
+
+//nav click event
+nav.addEventListener('click', (event) => {
+    nav.style.backgroundColor= 'lightblue';
+});//end click
+
 // ///////////////////////////////////////////
 
 //add 'preventDefault' to all nav links
@@ -112,4 +129,7 @@ navLinks.forEach( (ele) => {
         event.preventDefault();
     });//end click
 } );//end foreach
+
+
+
 
