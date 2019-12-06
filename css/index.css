@@ -175,11 +175,12 @@ img {
   }
 }
 .main-navigation {
-  width: 100%;
+  width: 20%;
   height: 90px;
   background: #FFFFFF;
   border-bottom: 2px dashed #C0C0C0;
   position: fixed;
+  opacity: 0;
 }
 .main-navigation .nav-container {
   height: 100%;
