@@ -1,3 +1,5 @@
+//open console to see all events running
+
 // /////////////// grab elements ////////////////////
 ////////////////////////////////////////////////////
 
@@ -27,6 +29,7 @@ const navLinks= document.querySelectorAll('nav .nav-link');
 const mainHeader= document.querySelector('header');
 const mainHeading= document.querySelector('header h1');
 
+//grab an image container to prepend a new element for gsap animation code below
 const inverseContent= document.querySelector('.inverse-content');
 
 // /////////////// events ////////////////////
@@ -58,7 +61,6 @@ window.addEventListener('scroll', (event) => {
             }else if( navLinks[i].style.color != 'red' ){
                 navLinks[i].style.color= 'red';
             }//end if
-
         }, 10 );//end setTimeout       
     }//end for
 } );//end window scroll
@@ -82,7 +84,6 @@ mainHeading.addEventListener('dblclick', (event) => { //toggle color
 window.addEventListener('resize', (event) => {
     console.log('Window Hdight: '+ window.innerHeight + '\nWindow Width: ' + window.innerWidth);
 });//end resize
-
 
 //unique event 7: load
 window.addEventListener('load', (event) => {
@@ -130,8 +131,8 @@ navLinks.forEach( (ele) => {
     });//end click
 } );//end foreach
 
-// ///////////////// GSAP //////////////////////
-///////////////////////////////////////////////
+// ///////////////// GSAP stretch //////////////////////
+///////////////////////////////////////////////////////
 
 //create a new ele
 const newDiv= document.createElement('div');
@@ -168,14 +169,11 @@ newDiv.addEventListener('click', (evnet) => {
    
     //reverses the animation after a delay
     function runReverse(){
-        setTimeout( function(){
+        setTimeout( function(){ //reverses the animation
             firstImg.reverse();
             secondImg.reverse();
         }, 1000);//end timeout
-        
     }//end func
-
-
 });//end mouseenter
 
 
