@@ -6,22 +6,47 @@ const green= document.querySelector('.block--green');
 const pink= document.querySelector('.block--pink');
 const gray= document.querySelector('.block--gray');
 
-
-
 const blockHeight= 120; // 100px + 10px margin top and bottom
 
+//get top pos rel to topleft viewport
+function getMyPos(block){
+    let cur= block.getBoundingClientRect(); 
+    return cur.top;
+}//end func
 
 // //////////////// add event listeners //////////////////
 /////////////////////////////////////////////////////////
 red.addEventListener('click', (event) => {
-    let redPos= red.getBoundingClientRect(); //returns object with positioning info based form 
-                                            //top left corner of 'viewport'
-    console.log('red: ',redPos.top);
+    event.stopPropagation();
+
+    let pos= getMyPos(red);
+    console.log('red pos: '+ pos);
+
+    let move= Math.floor(pos/120);
+    if(move > 0){
+        console.log('move: '+move); 
+    }//end if
+
+    if( pos > 69 ){
+        gsap.to( red, { duration: 1, y: (-120 * move) } );
+        console.log('Not on top');
+    }//end if
 });//end click event
 
 blue.addEventListener('click', (event) => {
-    let bluePos= blue.getBoundingClientRect();
-    console.log('blue: ', bluePos.top);
+    event.stopPropagation();
+
+    let pos= getMyPos(blue);
+    console.log('blue pos: '+pos);
+    let move= Math.floor(pos/120);
+    if(move > 0){
+        console.log('move: '+move); 
+    }
+
+    if( pos > 68 ){
+        gsap.to( blue, { duration: 1, y: -120 } );
+        console.log('Not on top');
+    }//end if
 });//end click event
 
 green.addEventListener('click', (event) => {
