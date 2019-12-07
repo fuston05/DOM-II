@@ -1,5 +1,3 @@
-import { gsap } from "gsap";
-
 // /////////////// grab elements ////////////////////
 ////////////////////////////////////////////////////
 
@@ -28,6 +26,8 @@ const navLinks= document.querySelectorAll('nav .nav-link');
 // main heading
 const mainHeader= document.querySelector('header');
 const mainHeading= document.querySelector('header h1');
+
+const inverseContent= document.querySelector('.inverse-content');
 
 // /////////////// events ////////////////////
 /////////////////////////////////////////////
@@ -129,6 +129,55 @@ navLinks.forEach( (ele) => {
         event.preventDefault();
     });//end click
 } );//end foreach
+
+// ///////////////// GSAP //////////////////////
+///////////////////////////////////////////////
+
+//create a new ele
+const newDiv= document.createElement('div');
+//style new ele
+newDiv.textContent= 'Click for cool GSAP animation!';
+newDiv.style.position= 'absolute';
+newDiv.style.backgroundColor= 'dodgerblue';
+newDiv.style.borderRadius= '5px';
+newDiv.style.padding= '5px';
+newDiv.style.zIndex= '2';
+newDiv.style.fontSize= '15px';
+newDiv.style.border= '2px solid gray';
+
+//add it to DOM
+inverseContent.prepend(newDiv);
+
+//add events for mouseenter to sim a hover affect
+newDiv.addEventListener('mouseenter', (evnet) => {
+    newDiv.style.backgroundColor= 'blue';
+    newDiv.style.color= 'white';
+    newDiv.style.cursor= 'pointer';
+});//end mouseenter
+
+//add events for mouseleave to sim a hover affect
+newDiv.addEventListener('mouseleave', (evnet) => {
+    newDiv.style.backgroundColor= 'dodgerblue';
+    newDiv.style.color= 'black';
+});//end mouseenter
+
+// add click listener to fire the gsap animation
+newDiv.addEventListener('click', (evnet) => {
+    const firstImg= gsap.to(inverseImg, {duration: 1, x: 423, y: -314,onComplete: runReverse});
+    const secondImg= gsap.to(contentSectionImg, {duration: 1, x: -423, y: 314, onComplete: runReverse});   
+   
+    //reverses the animation after a delay
+    function runReverse(){
+        setTimeout( function(){
+            firstImg.reverse();
+            secondImg.reverse();
+        }, 1000);//end timeout
+        
+    }//end func
+
+
+});//end mouseenter
+
 
 
 
